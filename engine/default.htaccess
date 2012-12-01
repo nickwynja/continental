@@ -3,14 +3,15 @@ Options -MultiViews
 AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript text/xml text/rss text/rss+xml
 
 RewriteEngine On
-
+RewriteRule ^rss$ rss.xml [L]
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteCond %{REQUEST_URI} !/$
+RewriteRule (.*) $1\.php [L]
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)/$ /$1 [R=301,L]
 RewriteRule ^([^\.]*)$ - [T=text/html]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.*)$ $1.html [QSA,L]
-
-ErrorDocument 404 /404.html
-ErrorDocument 500 /500.html
-
