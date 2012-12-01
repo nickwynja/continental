@@ -18,3 +18,7 @@ When possible, I'll make pull requests upstream so all Second Crack users can be
 ## Notes ##
 
 * Refer to the [README](https://github.com/marcoarment/secondcrack#readme) for Second Crack for basic usage.
+
+## Change Log ##
+
+* [2012-12-01]: Moved post tags to `/tags/` and month archive tags to `/year/month/tag`. [\[See Commit\]](https://github.com/nickwynja/continental/commit/b06e768d328b8c0b1a9127cbb8d1c35481c97931)
