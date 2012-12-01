@@ -1,7 +1,3 @@
-/resources/config.php
-/resources/css/main.css
-/resources/templates/main.php
-/resources/templates/rss.php
 cache
 www
 engine/secondcrack-updater.pid
