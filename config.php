@@ -18,9 +18,3 @@ Updater::$post_extension = '.md';
 Post::$blog_title = 'My Blog';
 Post::$blog_url   = 'http://www.mydomain.com/';
 Post::$blog_description = 'I\'m a blogger.';
-
-// Meta Weblog API params
-Updater::$api_blog_id = 1; // leave this, probably
-Updater::$api_blog_username = 'make up a username';
-Updater::$api_blog_password = 'whatever password you want';
-

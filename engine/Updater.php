@@ -37,10 +37,6 @@ class Updater
     public static $tag_page_template  = 'main.php';
     public static $type_page_template = 'main.php';
     public static $page_template      = 'main.php';
-    
-    public static $api_blog_id = 1;
-    public static $api_blog_username = '';
-    public static $api_blog_password = '';
 
     public static $changes_were_written = false;
     
