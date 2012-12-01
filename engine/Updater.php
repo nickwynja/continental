@@ -371,7 +371,7 @@ class Updater
     
     public static function post_hooks($post)
     {
-        $dir = self::$source_path . '/hooks';
+        $dir = self::$source_path . '/engine/hooks';
         if (is_dir($dir)) {
             if ( ($dh = opendir($dir)) ) {
                 while ( ($file = readdir($dh) ) !== false) {

@@ -1,0 +1,1 @@
+Continental is a name for the Vienna stage of coffee roasting which happens right at the beginning of Second Crack.
