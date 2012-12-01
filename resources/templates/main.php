@@ -77,10 +77,9 @@
             <? } ?>
             
             <footer>
-                <p>&copy; 2006-2012 Marco Arment. All rights reserved.</p>
+                <p>&copy; 2012. All rights reserved.</p>
                 <p>
                     <a href="/rss.xml">RSS feed</a>.
-                    Powered by <a href="http://www.marco.org/secondcrack">Second Crack</a>.
                 </p>
 
             </footer>
