@@ -51,9 +51,7 @@ class Updater
     {
         $month = str_pad($month, 2, '0', STR_PAD_LEFT);
         $cache_fname = self::$cache_path . "/posts-$year-$month-" . md5($require_tag . ' ' . $require_type);
-        if (file_exists($cache_fname)) {
-            $files = unserialize(file_get_contents($cache_fname));
-        } else {
+
             $all_files = self::filelist(self::$source_path . "/posts/$year/$month", true);
             ksort($all_files);
             $in_month = false;
@@ -86,7 +84,7 @@ class Updater
             
             if (! file_exists(self::$cache_path)) mkdir_as_parent_owner(self::$cache_path, 0755, true);
             file_put_contents_as_dir_owner($cache_fname, serialize($files));
-        }
+
         return $files;
     }
     
