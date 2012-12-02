@@ -38,4 +38,4 @@ When possible, I'll make pull requests upstream so all Second Crack users can be
 * [2012-12-01]: Fixed month archive cache bug. [\[See Commit\]](https://github.com/nickwynja/continental/commit/907834c86cd8aa3c83c15d732b35e5911230481c)
 * [2012-12-01]: All pages now are written with `.html` extension for semantic purposes. [\[See Commit\]](https://github.com/nickwynja/continental/commit/d3311cde2d70cd1a490f4bd277bc30bfa72dd083)
 * [2012-12-01]: Better logging of blog name for when running multiple blogs on the same server. [\[See Commit\]](https://github.com/nickwynja/continental/commit/e7e6fbff4bf385725502710d5c84749b73ab6dba)
-* [2012-12-02]: Added capistrano.[\[See Commit\]](https://github.com/nickwynja/continental/commit/7700785e9bcb8c58a2411b030f4145a33f3bae9b)
+* [2012-12-02]: Added capistrano. [\[See Commit\]](https://github.com/nickwynja/continental/commit/7700785e9bcb8c58a2411b030f4145a33f3bae9b)
