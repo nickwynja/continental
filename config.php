@@ -4,7 +4,7 @@ require_once(dirname(__FILE__) . '/engine/Updater.php'); // Don't touch this.
 
 date_default_timezone_set('America/New_York');
 
-$env = ((isset($_SERVER['HOSTNAME']) && ($_SERVER['HOSTNAME']) === 'severhostname')) ? 'PROD' : 'DEV';
+$env = ((isset($_SERVER['HOSTNAME']) && ($_SERVER['HOSTNAME']) === 'severhostname')) || (($_SERVER['HOME']) === '/home/blog') ? 'PROD' : 'DEV'; #Accounts for if ran from CLI or cron
 define('ENV', $env);
 
 
