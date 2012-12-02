@@ -21,9 +21,14 @@ When possible, I'll make pull requests upstream so all Second Crack users can be
 ## Notes ##
 
 * Refer to the [README](https://github.com/marcoarment/secondcrack#readme) for Second Crack for basic usage.
+* Since I run multiple Second Crack blogs on the same server, I've added a feature to specify the name of the blog in the `cron` command which will be logged properly. Add the blog name at the end of the run command like this:
+
+    /home/blog/continental/engine/update.sh {SOURCE_PATH} {SECONDCRACK_PATH} my_blog
+
 
 ## Change Log ##
 
 * [2012-12-01]: Moved post tags to `/tags/` and month archive tags to `/year/month/tag`. [\[See Commit\]](https://github.com/nickwynja/continental/commit/b06e768d328b8c0b1a9127cbb8d1c35481c97931)
 * [2012-12-01]: Fixed month archive cache bug. [\[See Commit\]](https://github.com/nickwynja/continental/commit/907834c86cd8aa3c83c15d732b35e5911230481c)
 * [2012-12-01]: All pages now are written with `.html` extension for semantic purposes. [\[See Commit\]](https://github.com/nickwynja/continental/commit/d3311cde2d70cd1a490f4bd277bc30bfa72dd083)
+* [2012-12-01]: Better logging of blog name for when running multiple blogs on the same server. [\[See Commit\]](https://github.com/nickwynja/continental/commit/e7e6fbff4bf385725502710d5c84749b73ab6dba)
