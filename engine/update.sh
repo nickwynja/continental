@@ -11,6 +11,7 @@ fi
 
 SOURCE_PATH="$1"
 SECONDCRACK_PATH="$2"
+BLOG_NAME="$3"
 FORCE_CHECK_EVERY_SECONDS=30
 UPDATE_LOG=/tmp/secondcrack-update.log
 
@@ -20,21 +21,21 @@ BASH_LOCK_DIR="${SECONDCRACK_PATH}/engine/secondcrack-updater.sh.lock"
 if mkdir "$BASH_LOCK_DIR" ; then
     trap "rmdir '$BASH_LOCK_DIR' 2>/dev/null ; exit" INT TERM EXIT
 
-    echo "`date` -- updating secondcrack" >> $UPDATE_LOG
+    echo "`date` -- updating $BLOG_NAME" >> $UPDATE_LOG
     php -f "${SECONDCRACK_PATH}/engine/update.php" "$SCRIPT_LOCK_FILE"
 
     if [ "`which inotifywait`" != "" ] ; then
         while true ; do
             inotifywait -q -q -r -t $FORCE_CHECK_EVERY_SECONDS -e close_write -e create -e delete -e moved_from "$SOURCE_PATH"
             if [ $? -eq 0 ] ; then
-                echo "`date` -- updating secondcrack, a source file changed" >> $UPDATE_LOG
+                echo "`date` -- updating $BLOG_NAME, a source file changed" >> $UPDATE_LOG
             else
-                echo "`date` -- updating secondcrack, $FORCE_CHECK_EVERY_SECONDS seconds elapsed" >> $UPDATE_LOG
+                echo "`date` -- updating $BLOG_NAME, $FORCE_CHECK_EVERY_SECONDS seconds elapsed" >> $UPDATE_LOG
             fi
             
             php -f "${SECONDCRACK_PATH}/engine/update.php" "$SCRIPT_LOCK_FILE"
             while [ $? -eq 2 ] ; do 
-                echo "`date` -- updating secondcrack, last run performed writes" >> $UPDATE_LOG
+                echo "`date` -- updating $BLOG_NAME, last run performed writes" >> $UPDATE_LOG
                 php -f "${SECONDCRACK_PATH}/engine/update.php" "$SCRIPT_LOCK_FILE"
             done
         done
