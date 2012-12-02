@@ -30,7 +30,7 @@ When possible, I'll make pull requests upstream so all Second Crack users can be
 * Refer to the [README](https://github.com/marcoarment/secondcrack#readme) for Second Crack for basic usage.
 * Since I run multiple Second Crack blogs on the same server, I've added a feature to specify the name of the blog in the `cron` command which will be logged properly. Add the blog name at the end of the run command like this:
 
-    `/home/blog/continental/engine/update.sh {SOURCE_PATH} {SECONDCRACK_PATH} my_blog`
+        /home/blog/continental/engine/update.sh {SOURCE_PATH} {SECONDCRACK_PATH} my_blog
 
 
 ## Change Log ##
