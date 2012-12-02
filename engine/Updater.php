@@ -8,6 +8,7 @@ class Updater
     public static $source_path;
     public static $dest_path;
     public static $cache_path;
+    public static $hook_path;
     public static $post_extension = '.md';
     
     // This option writes each draft preview into (web root)/drafts/whatever-slug
@@ -319,7 +320,9 @@ class Updater
                 $dir = dirname($expected_fname);
                 if (! file_exists($dir)) mkdir_as_parent_owner($dir, 0755, true);
                 if (file_put_contents_as_dir_owner($expected_fname, $post->normalized_source())) safe_unlink($filename);
-                self::post_hooks($post);
+                if (ENV == 'PROD') {
+                  self::post_hooks($post);
+                }
             }
 
             if (! file_exists($filename)) {
@@ -343,7 +346,9 @@ class Updater
                     $dir = dirname($expected_fname);
                     if (! file_exists($dir)) mkdir_as_parent_owner($dir, 0755, true);
                     if (file_put_contents_as_dir_owner($expected_fname, $post->normalized_source())) safe_unlink($filename);
-                    self::post_hooks($post);
+                    if (ENV == 'PROD') {
+                      self::post_hooks($post);
+                    }
                 } else {
                     $post->write_permalink_page(true);
                 }
@@ -369,7 +374,7 @@ class Updater
     
     public static function post_hooks($post)
     {
-        $dir = self::$source_path . '/engine/hooks';
+        $dir = self::$hook_path . '/hooks';
         if (is_dir($dir)) {
             if ( ($dh = opendir($dir)) ) {
                 while ( ($file = readdir($dh) ) !== false) {

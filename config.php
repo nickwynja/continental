@@ -4,14 +4,26 @@ require_once(dirname(__FILE__) . '/engine/Updater.php'); // Don't touch this.
 
 date_default_timezone_set('America/New_York');
 
-$db_dir = '';
-$base_dir = '/Users/nickwynja/Sites/continental';
+$env = ((isset($_SERVER['HOSTNAME']) && ($_SERVER['HOSTNAME']) === 'severhostname')) ? 'PROD' : 'DEV';
+define('ENV', $env);
+
+
+if (ENV == 'PROD') {
+  $base_dir = '/path/to/continental';
+  $content_dir = '/home/blog/Dropbox/blog';
+  $shared_dir = '/path/to/continental/shared'; # /shared is part of capistrano deploy
+} else {
+  $base_dir = $_SERVER['HOME'] . '/Sites/continental';
+  $content_dir = $base_dir . '/content';
+  $shared_dir = $base_dir;
+}
 
 // Paths
-Updater::$source_path   = $base_dir . '/content';
+Updater::$source_path   = $content_dir;
 Template::$template_dir = $base_dir . '/resources/templates';
-Updater::$dest_path     = $base_dir . '/www';
+Updater::$dest_path     = $shared_dir . '/www';
 Updater::$cache_path    = $base_dir . '/cache';
+Updater::$hook_path    = $base_dir . '/engine';
 Updater::$post_extension = '.md';
 
 // Blog metadata
