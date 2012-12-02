@@ -13,6 +13,7 @@ In many cases, this fork won't be ideal for out-of-the-box configuration. I'll t
 Here's a list of new features that I plan, have added, or fixed:
 
 * Tags have been moved out of the root of `www` and now are served from `website.com/tag/foo`.
+* Fixed month archive cache bug
 
 When possible, I'll make pull requests upstream so all Second Crack users can benefit from fixes and changes.
 
@@ -23,3 +24,4 @@ When possible, I'll make pull requests upstream so all Second Crack users can be
 ## Change Log ##
 
 * [2012-12-01]: Moved post tags to `/tags/` and month archive tags to `/year/month/tag`. [\[See Commit\]](https://github.com/nickwynja/continental/commit/b06e768d328b8c0b1a9127cbb8d1c35481c97931)
+* [2012-12-01]: Fixed month archive cache bug. [\[See Commit\]](https://github.com/nickwynja/continental/commit/907834c86cd8aa3c83c15d732b35e5911230481c)
