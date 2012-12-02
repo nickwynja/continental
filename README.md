@@ -10,20 +10,26 @@ In many cases, this fork won't be ideal for out-of-the-box configuration. I'll t
 
 # New Features and Fixes #
 
-Here's a list of new features that I plan, have added, or fixed:
+Here's a list of new features that I have added or fixed:
 
 * Tags have been moved out of the root of `www` and now are served from `website.com/tag/foo`.
 * Fixed month archive cache bug
 * Writes all pages with `.html` extension and uses `.htaccess` to keep the URL clean.
+* Adds [capistrano](https://github.com/capistrano/capistrano/wiki) for deploys. Edit `cap/deploy.rb` to configure. Dependancies: `ruby`, `rails`, `capistrano`, `railsless-deploy`.
 
 When possible, I'll make pull requests upstream so all Second Crack users can benefit from fixes and changes.
+
+### Features I Want to Add ###
+
+* Nested folders
+* Custom pages templates by defining in the post/page header
 
 ## Notes ##
 
 * Refer to the [README](https://github.com/marcoarment/secondcrack#readme) for Second Crack for basic usage.
 * Since I run multiple Second Crack blogs on the same server, I've added a feature to specify the name of the blog in the `cron` command which will be logged properly. Add the blog name at the end of the run command like this:
 
-    /home/blog/continental/engine/update.sh {SOURCE_PATH} {SECONDCRACK_PATH} my_blog
+    `/home/blog/continental/engine/update.sh {SOURCE_PATH} {SECONDCRACK_PATH} my_blog`
 
 
 ## Change Log ##
