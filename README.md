@@ -12,6 +12,7 @@ In many cases, this fork won't be ideal for out-of-the-box configuration. I'll t
 
 Here's a list of new features that I plan, have added, or fixed:
 
+* Tags have been moved out of the root of `www` and now are served from `website.com/tag/foo`.
 
 When possible, I'll make pull requests upstream so all Second Crack users can benefit from fixes and changes.
 
