@@ -405,11 +405,14 @@ class Updater
        
         foreach (self::changed_files_in_directory(self::$source_path . '/pages') as $filename => $info) {
             self::$changes_were_written = true;
-                        
+            
+            $child_dir = str_replace(self::$source_path . '/pages', '', (dirname($filename)));
+
             if (! file_exists($filename)) {
+
                 if (ends_with($filename, self::$post_extension)) {
                     error_log("Deleted page $filename");
-                    $dest_filename = self::$dest_path . '/' . substring_before(basename($filename), '.', true);
+                    $dest_filename = self::$dest_path  . $child_dir . '/' . (substring_before(basename($filename), '.', true) . '.html');
                     if (file_exists($dest_filename)) safe_unlink($dest_filename);
                 }
                 continue;
@@ -417,7 +420,6 @@ class Updater
 
             if (substr($filename, -(strlen(self::$post_extension))) == self::$post_extension) {
 
-                $child_dir = str_replace(self::$source_path . '/pages', '', (dirname($filename)));
                 $post = new Post($filename, true);
                 $post->slug = basename($filename, self::$post_extension);
                 error_log("Writing page [{$post->slug}]");
