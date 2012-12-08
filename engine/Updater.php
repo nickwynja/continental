@@ -394,9 +394,18 @@ class Updater
     
     public static function update_pages()
     {
+      $page_dirs = scandir(self::$source_path . '/pages');
+      if ($page_dirs !== false) {
+        foreach($page_dirs as $p) {
+          if (is_dir(self::$source_path . '/pages/' . $p)) {
+            if (! file_exists(self::$dest_path . '/' . $p)) mkdir_as_parent_owner(self::$dest_path . '/' . $p, 0755, true) ;
+          }
+        }
+      }
+       
         foreach (self::changed_files_in_directory(self::$source_path . '/pages') as $filename => $info) {
             self::$changes_were_written = true;
-            
+                        
             if (! file_exists($filename)) {
                 if (ends_with($filename, self::$post_extension)) {
                     error_log("Deleted page $filename");
@@ -407,10 +416,12 @@ class Updater
             }
 
             if (substr($filename, -(strlen(self::$post_extension))) == self::$post_extension) {
+
+                $child_dir = str_replace(self::$source_path . '/pages', '', (dirname($filename)));
                 $post = new Post($filename, true);
                 $post->slug = basename($filename, self::$post_extension);
                 error_log("Writing page [{$post->slug}]");
-                $post->write_page(true);
+                $post->write_page($child_dir, true);
             }
         }        
     }
