@@ -1,4 +1,4 @@
-Options -MultiViews
+Options -MultiViews -Indexes 
 
 AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript text/xml text/rss text/rss+xml
 
