@@ -18,12 +18,12 @@ Here's a list of new features that I have added or fixed:
 * Adds [capistrano](https://github.com/capistrano/capistrano/wiki) for deploys. Edit `cap/deploy.rb` to configure. Dependancies: `ruby`, `rails`, `capistrano`, `railsless-deploy`.
 * Configuration based on environment
 * Nested pages
+* Custom pages templates by defining in the post/page header
 
 When possible, I'll make pull requests upstream so all Second Crack users can benefit from fixes and changes.
 
 ### Features I Want to Add ###
 
-* Custom pages templates by defining in the post/page header
 
 ### To-Dos ###
 
@@ -36,6 +36,7 @@ When possible, I'll make pull requests upstream so all Second Crack users can be
 
         /home/blog/continental/engine/update.sh {SOURCE_PATH} {SECONDCRACK_PATH} my_blog
 * Nested pages work by adding a folder in the `/pages` directory. Any `.md` files created in, for example, `/pages/foo/bar.md` will be created in `/www/foo/bar.html`. Create `/pages/foo/index.md` to have a page exist at `yoursite.com/foo`. I still need to add deletion of `/www/foo` folder when `/pages/foo` is removed.
+* Specify a template in the header of a file like this: `template: writing` where you have a `writing.php` file in your `/templates` directory.
 
 ## Change Log ##
 
@@ -46,3 +47,4 @@ When possible, I'll make pull requests upstream so all Second Crack users can be
 * [2012-12-02]: Added capistrano.[\[See Commit\]](https://github.com/nickwynja/continental/commit/7700785e9bcb8c58a2411b030f4145a33f3bae9b)
 * [2012-12-02]: Added environment configuration and production-only hooks. [\[See Commit\]](https://github.com/nickwynja/continental/commit/6a680270baed00d7439d642e51530b29d6a2731e)
 * [2012-12-08]: Added nested pages. [\[See Commit\]](https://github.com/nickwynja/continental/commit/812b604b2414f0601584da7e95e037555a4788fd)
+* [2012-12-09]: Added ability to specify alternate template in a page header. [\[See Commit\]](https://github.com/nickwynja/continental/commit/dd953039201c8b1282fbca96854ced1e60386ce5)
