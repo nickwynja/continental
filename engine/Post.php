@@ -199,7 +199,8 @@ class Post
 
     public function write_page($path)
     {
-        $t = new Template(Updater::$page_template);
+        $template = (isset($this->headers['template'])) ? $this->headers['template'] . '.php' : Updater::$page_template;
+        $t = new Template($template);
         $t->content = array(
             'page-title' => html_entity_decode(SmartyPants($this->title), ENT_QUOTES, 'UTF-8'),
             'page-body' => SmartyPants(Markdown($this->body)),
