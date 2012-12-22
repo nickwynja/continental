@@ -7,6 +7,7 @@ class Updater
 {
     public static $source_path;
     public static $dest_path;
+    public static $blog_path;
     public static $cache_path;
     public static $hook_path;
     public static $post_extension = '.md';
@@ -296,7 +297,7 @@ class Updater
             foreach ($months as $month => $x) {
                 $ts = mktime(0, 0, 0, $month, 15, $year);
                 $out[$year . str_pad($month, 2, '0', STR_PAD_LEFT)] = array(
-                    'archives-uri' => "/$year/" . str_pad($month, 2, '0', STR_PAD_LEFT) . '/' . $scope,
+                    'archives-uri' => Post::$blog_uri . "/$year/" . str_pad($month, 2, '0', STR_PAD_LEFT) . '/' . $scope,
                     'archives-year' => $year,
                     'archives-month-number' => intval($month),
                     'archives-month-name' => date('F', $ts),
@@ -446,9 +447,11 @@ class Updater
     
     private static function _update($restart_if_resequenced = true)
     {
+
         if (! file_exists(self::$dest_path)) mkdir_as_parent_owner(self::$dest_path, 0755, true);
+        if (! file_exists(self::$blog_path)) mkdir_as_parent_owner(self::$blog_path, 0755, true);
         if (! file_exists(self::$dest_path . '/.htaccess')) copy(dirname(__FILE__) . '/default.htaccess', self::$dest_path . '/.htaccess');
-        if (! file_exists(self::$dest_path . '/tag')) mkdir_as_parent_owner(self::$dest_path . '/tag', 0755, true);
+        if (! file_exists(self::$blog_path . '/tag')) mkdir_as_parent_owner(self::$blog_path . '/tag', 0755, true);
         if (! file_exists(self::$source_path . '/drafts/_publish-now')) mkdir_as_parent_owner(self::$source_path . '/drafts/_publish-now', 0755, true);
         if (! file_exists(self::$source_path . '/drafts/_previews')) mkdir_as_parent_owner(self::$source_path . '/drafts/_previews', 0755, true);
         if (! file_exists(self::$source_path . '/pages')) mkdir_as_parent_owner(self::$source_path . '/pages', 0755, true);
@@ -502,7 +505,7 @@ class Updater
                     $month = substr($filename_datestr, 4, 2);
                     $day = substr($filename_datestr, 6, 2);
                     $slug = substr(basename($filename), 12, -(strlen(self::$post_extension)));
-                    $target_filename = self::$dest_path . "/$year/$month/$day/$slug";
+                    $target_filename = self::$blog_path . "/$year/$month/$day/$slug";
                     if ($year && $month && $day && $slug && file_exists($target_filename)) {
                         error_log("Deleting abandoned target file: $target_filename");
                         safe_unlink($target_filename);
@@ -529,7 +532,7 @@ class Updater
                     $month = intval(substr($filename_datestr, 4, 2));
                     $day = intval(substr($filename_datestr, 6, 2));
                     if ($year && $month && $day) {
-                        $output_path = self::$dest_path . "/$year/" . str_pad($month, 2, '0', STR_PAD_LEFT) . '/' . str_pad($day, 2, '0', STR_PAD_LEFT);
+                        $output_path = self::$blog_path . "/$year/" . str_pad($month, 2, '0', STR_PAD_LEFT) . '/' . str_pad($day, 2, '0', STR_PAD_LEFT);
                         if (! file_exists($output_path)) mkdir_as_parent_owner($output_path, 0755, true);
                         $output_filename = $output_path . '/' . basename($filename);
                         copy($filename, $output_filename);
@@ -565,7 +568,7 @@ class Updater
             $seq_count = 0;
             if (self::$frontpage_paginate) {
                 $seq_count = Post::write_index_sequence(
-                    self::$dest_path . "/index", 
+                    self::$blog_path . "/index", 
                     Post::$blog_title, 
                     'frontpage', 
                     Post::from_files(self::most_recent_post_filenames(0, self::$frontpage_tag_filter, self::$frontpage_type_filter)),
@@ -576,7 +579,7 @@ class Updater
             }
             
             Post::write_index(
-                self::$dest_path . "/index.html", 
+                self::$blog_path . "/index.html", 
                 Post::$blog_title, 
                 'frontpage', 
                 Post::from_files(self::most_recent_post_filenames(self::$frontpage_post_limit, self::$frontpage_tag_filter, self::$frontpage_type_filter)),
@@ -587,7 +590,7 @@ class Updater
 
             error_log("Updating RSS...");
             Post::write_index(
-                self::$dest_path . "/rss.xml", 
+                self::$blog_path . "/rss.xml", 
                 Post::$blog_title, 
                 'rss', 
                 Post::from_files(self::most_recent_post_filenames(self::$rss_post_limit, self::$rss_tag_filter, self::$rss_type_filter)),
@@ -603,7 +606,7 @@ class Updater
             $posts = Post::from_files(self::post_filenames_in_year_month($year, $month, self::$archive_tag_filter, self::$archive_type_filter));
             $ts = mktime(0, 0, 0, $month, 15, $year);
             Post::write_index(
-                self::$dest_path . "/$year/$month/index.html", 
+                self::$blog_path . "/$year/$month/index.html", 
                 date('F Y', $ts), 
                 'archive', 
                 $posts, 
@@ -618,7 +621,7 @@ class Updater
             self::$changes_were_written = true;
 
             $seq_count = Post::write_index_sequence(
-                self::$dest_path . "/tag/$tag",
+                self::$blog_path . "/tag/$tag",
                 Post::$blog_title, 
                 'tag', 
                 Post::from_files(self::most_recent_post_filenames(0, $tag, self::$archive_tag_filter)),
@@ -628,7 +631,7 @@ class Updater
             );
 
             Post::write_index(
-                self::$dest_path . "/tag/$tag.html",
+                self::$blog_path . "/tag/$tag.html",
                 Post::$blog_title, 
                 'tag', 
                 Post::from_files(self::most_recent_post_filenames(self::$frontpage_post_limit, $tag, self::$archive_tag_filter)),
@@ -638,7 +641,7 @@ class Updater
             );
 
             Post::write_index(
-                self::$dest_path . "/tag/$tag.xml", 
+                self::$blog_path . "/tag/$tag.xml", 
                 Post::$blog_title, 
                 'tag', 
                 Post::from_files(self::most_recent_post_filenames(self::$rss_post_limit, $tag, self::$archive_tag_filter)),
@@ -654,7 +657,7 @@ class Updater
                 $posts = Post::from_files(self::post_filenames_in_year_month($year, $month, $tag, self::$archive_type_filter));
                 $ts = mktime(0, 0, 0, $month, 15, $year);
                 Post::write_index(
-                    self::$dest_path . "/$year/$month/$tag.html",
+                    self::$blog_path . "/$year/$month/$tag.html",
                     date('F Y', $ts),
                     'tag',
                     $posts,
@@ -670,7 +673,7 @@ class Updater
             self::$changes_were_written = true;
 
             Post::write_index(
-                self::$dest_path . "/type-$type.html", 
+                self::$blog_path . "/type-$type.html", 
                 Post::$blog_title, 
                 'type', 
                 Post::from_files(self::most_recent_post_filenames(self::$frontpage_post_limit, self::$archive_type_filter, $type)),
@@ -679,7 +682,7 @@ class Updater
             );
 
             Post::write_index(
-                self::$dest_path . "/type-$type.xml", 
+                self::$blog_path . "/type-$type.xml", 
                 Post::$blog_title, 
                 'type', 
                 Post::from_files(self::most_recent_post_filenames(self::$rss_post_limit, self::$archive_type_filter, $type)),
@@ -695,7 +698,7 @@ class Updater
                 $posts = Post::from_files(self::post_filenames_in_year_month($year, $month, self::$archive_tag_filter, $type));
                 $ts = mktime(0, 0, 0, $month, 15, $year);
                 Post::write_index(
-                    self::$dest_path . "/$year/$month/type-$type.html",
+                    self::$blog_path . "/$year/$month/type-$type.html",
                     date('F Y', $ts),
                     'type',
                     $posts,

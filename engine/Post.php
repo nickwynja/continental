@@ -12,6 +12,7 @@ class Post
     public static $blog_title = 'Untitled Blog';
     public static $blog_url   = 'http://no-idea.com/';
     public static $blog_description = 'About my blog.';
+    public static $blog_uri = '/blog';
     
     public $source_filename = '';
     public $title = '';
@@ -175,7 +176,7 @@ class Post
         foreach ($this->tags as $tag) { $tags[$tag] = array('post-tag' => $tag); }
         
         // Convert relative image references to absolute so index pages work
-        $base_uri = '/' . $this->year . '/' . str_pad($this->month, 2, '0', STR_PAD_LEFT) . '/' . str_pad($this->day, 2, '0', STR_PAD_LEFT);
+        $base_uri = Post::$blog_uri . '/' . $this->year . '/' . str_pad($this->month, 2, '0', STR_PAD_LEFT) . '/' . str_pad($this->day, 2, '0', STR_PAD_LEFT);
         
         return array_merge(
             $this->headers,
@@ -251,7 +252,7 @@ class Post
         if ($draft) file_put_contents_as_dir_owner(Updater::$source_path . '/drafts/_previews/' . $this->slug . '.html', $output_html);
     }
     
-    public static function write_index($dest_path, $title, $type, array $posts, $template = 'main.html', $archive_array = false, $seq_count = 0)
+    public static function write_index($blog_path, $title, $type, array $posts, $template = 'main.html', $archive_array = false, $seq_count = 0)
     {
         $posts_data = array();
         foreach ($posts as $p) $posts_data[] = $p->array_for_template();
@@ -265,29 +266,29 @@ class Post
             'page-type' => $type,
             'posts' => $posts_data,
             'previous_page_url' => false,
-            'next_page_url' => $seq_count > 1 ? substring_after(substring_before($dest_path, '.', true), Updater::$dest_path) . '-2' : false,
+            'next_page_url' => $seq_count > 1 ? substring_after(substring_before($blog_path, '.', true), Updater::$blog_path) . '-2' : false,
             'archives' => $archive_array ? $archive_array : array(),
         );
         $output_html = $t->outputHTML();
         
-        $output_path = dirname($dest_path);
+        $output_path = dirname(Updater::$blog_path);
         if (! file_exists($output_path)) mkdir_as_parent_owner($output_path, 0755, true);
-        file_put_contents_as_dir_owner($dest_path, $output_html);
+        file_put_contents_as_dir_owner($blog_path, $output_html);
     }
 
-    public function write_index_sequence($dest_path, $title, $type, array $posts, $template = 'main.html', $archive_array = false, $posts_per_page = 20)
+    public function write_index_sequence($blog_path, $title, $type, array $posts, $template = 'main.html', $archive_array = false, $posts_per_page = 20)
     {
         $sequence = 0;
-        $new_dest_path = $dest_path;
-        // $dest_uri = substring_after(substring_before($dest_path, '.', true), Updater::$dest_path);
-        $dest_uri = substring_after(substring_after($dest_path, '/', true), Updater::$dest_path);
+        $new_dest_path = $blog_path;
+        // $dest_uri = substring_after(substring_before($blog_path, '.', true), Updater::$blog_path);
+        $dest_uri = substring_after(substring_after($blog_path, '/', true), Updater::$blog_path);
         $total_sequences = ceil(count($posts) / $posts_per_page);
         while ($posts) {
             $sequence++;
             $seq_array = array_splice($posts, 0, $posts_per_page);
             if ($sequence == 1) continue; // skip writing the redundant "-1" page
             
-            $new_dest_path = $dest_path . '-' . $sequence . '.html';
+            $new_dest_path = Updater::$blog_path . '-' . $sequence . '.html';
 
             $posts_data = array();
             foreach ($seq_array as $p) $posts_data[] = $p->array_for_template();

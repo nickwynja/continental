@@ -22,6 +22,7 @@ if (ENV == 'PROD') {
 Updater::$source_path   = $content_dir;
 Template::$template_dir = $base_dir . '/resources/templates';
 Updater::$dest_path     = $shared_dir . '/www';
+Updater::$blog_path     = $shared_dir . '/www'; // Set to same as $dest_path for your blog index at `yoursite.com`; else set it to `dir/blog`
 Updater::$cache_path    = $base_dir . '/cache';
 Updater::$hook_path    = $base_dir . '/engine';
 Updater::$post_extension = '.md';
@@ -30,3 +31,4 @@ Updater::$post_extension = '.md';
 Post::$blog_title = 'My Blog';
 Post::$blog_url   = 'http://www.mydomain.com/';
 Post::$blog_description = 'I\'m a blogger.';
+Post::$blog_uri   = '';  // Keep blank if you want your blog index at `yoursite.com`. For `yoursite.com/blog/` set it to `/blog`
