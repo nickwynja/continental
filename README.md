@@ -19,6 +19,7 @@ Here's a list of new features that I have added or fixed:
 * Configuration based on environment
 * Nested pages
 * Custom pages templates by defining in the post/page header
+* Support for having your blog roll live in a subdirectory like `yoursite.com/blog`
 
 When possible, I'll make pull requests upstream so all Second Crack users can benefit from fixes and changes.
 
@@ -63,6 +64,7 @@ If you want to move from Second Crack to Continental, below is a general guideli
         /home/blog/continental/engine/update.sh {SOURCE_PATH} {SECONDCRACK_PATH} my_blog
 * Nested pages work by adding a folder in the `/pages` directory. Any `.md` files created in, for example, `/pages/foo/bar.md` will be created in `/www/foo/bar.html`. Create `/pages/foo/index.md` to have a page exist at `yoursite.com/foo`. I still need to add deletion of `/www/foo` folder when `/pages/foo` is removed.
 * Specify a template in the header of a file like this: `template: writing` where you have a `writing.php` file in your `/templates` directory.
+* For moving your blog roll into a subdirectory, set `Updater::$blog_path` and `Post::$blog_uri` in `config.php`. Create `index.md` in `/pages` to be your home page.
 
 ## Change Log ##
 
@@ -74,6 +76,7 @@ If you want to move from Second Crack to Continental, below is a general guideli
 * [2012-12-02]: Added environment configuration and production-only hooks. [\[See Commit\]](https://github.com/nickwynja/continental/commit/6a680270baed00d7439d642e51530b29d6a2731e)
 * [2012-12-08]: Added nested pages. [\[See Commit\]](https://github.com/nickwynja/continental/commit/812b604b2414f0601584da7e95e037555a4788fd)
 * [2012-12-09]: Added ability to specify alternate template in a page header. [\[See Commit\]](https://github.com/nickwynja/continental/commit/dd953039201c8b1282fbca96854ced1e60386ce5)
+* [2012-12-21]: Added support for blog living at yoursite.com/blog. Settings in config.php. [\[See Commit\]](https://github.com/nickwynja/continental/commit/bc8660ca9bde49d8f0a9857b7d6e51dcf1ac6424)
 
 [sc]: https://github.com/marcoarment/secondcrack
 [dsc]: http://nickwynja.com/deploysecondcrack
