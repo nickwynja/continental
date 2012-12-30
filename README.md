@@ -20,6 +20,7 @@ Here's a list of new features that I have added or fixed:
 * Nested pages
 * Custom pages templates by defining in the post/page header
 * Support for having your blog roll live in a subdirectory like `yoursite.com/blog`
+* Adds short/cleaner URLs by optionally writing to `.htaccess` of short domain on same server
 
 When possible, I'll make pull requests upstream so all Second Crack users can benefit from fixes and changes.
 
@@ -77,6 +78,9 @@ If you want to move from Second Crack to Continental, below is a general guideli
 * [2012-12-08]: Added nested pages. [\[See Commit\]](https://github.com/nickwynja/continental/commit/812b604b2414f0601584da7e95e037555a4788fd)
 * [2012-12-09]: Added ability to specify alternate template in a page header. [\[See Commit\]](https://github.com/nickwynja/continental/commit/dd953039201c8b1282fbca96854ced1e60386ce5)
 * [2012-12-21]: Added support for blog living at yoursite.com/blog. Settings in config.php. [\[See Commit\]](https://github.com/nickwynja/continental/commit/bc8660ca9bde49d8f0a9857b7d6e51dcf1ac6424)
+* [2012-12-29]: Added support for short/cleaner URLs like u.co/post-slug. [\[See Commit\]](https://github.com/nickwynja/continental/commit/8d9f850c16c70582e69eef6454613fef5d585a73)
+
+
 
 [sc]: https://github.com/marcoarment/secondcrack
 [dsc]: http://nickwynja.com/deploysecondcrack
