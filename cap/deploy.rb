@@ -58,8 +58,8 @@ namespace(:customs) do
   task :config, :except => { :no_release => true } do
     puts red("Putting assets in place")
     run "mkdir -p #{document_root}/assets/"
-    run "ln -fs #{release_path}/css #{document_root}/assets/"
-    run "ln -fs #{release_path}/img #{document_root}/assets/"
+    run "ln -fs #{release_path}/resources/css #{document_root}/assets/"
+    run "ln -fs #{release_path}/resources/img #{document_root}/assets/"
     run "ln -fs #{release_path}/resources/templates/_htaccess #{document_root}/.htaccess"
   end
 
