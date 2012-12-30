@@ -14,7 +14,7 @@ class Post
     public static $blog_description = 'About my blog.';
     public static $blog_uri = '/blog';
     public static $create_short_url = false;
-    public static $short_url_dir = '/path/to/dir';
+    public static $short_url_redirect_file = '/path/to/dir';
     public static $short_url_domain = 'short.co';
 
     public $source_filename = '';
@@ -254,7 +254,7 @@ class Post
             if (self::$create_short_url == true) {
               if (! file_exists(Updater::$dest_path . $post_data['post-permalink'] . ".html")) {
                 $redir = "\nRedirect 301 /{$post_data['post-slug']} {$post_data['post-absolute-permalink']}";
-                file_put_contents(self::$short_url_dir . '.htaccess', $redir, FILE_APPEND);
+                file_put_contents(self::$short_url_redirect_file, $redir, FILE_APPEND);
               }
             }
 

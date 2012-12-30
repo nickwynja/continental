@@ -36,5 +36,5 @@ Post::$blog_uri   = '';  // Keep blank if you want your blog index at `yoursite.
 // Settings
 
 Post::$create_short_url = false; //Turn to `true` to roll your own shorter/cleaner URLs. Uses short domain and slug
-  Post::$short_url_dir = '/home/blog/short_co/'; //Full local path
+  Post::$short_url_redirect_file = '/home/blog/short_co/.htaccess'; //Full local path
   Post::$short_url_domain = 'short.co/';
