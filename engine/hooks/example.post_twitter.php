@@ -170,7 +170,9 @@ function tweet_link_to_post(array $post_array_for_template)
         if ($short_url_length < 16) $short_url_length = 24; // sanity check
     } catch (Exception $e) { }
 
-    $url_to_use = $post_array_for_template['post-absolute-permalink'];
+
+
+    $url_to_use = Post::$short_url_domain . $post_array_for_template['post-slug'];
     $tweet_text = tweet_text_before_url_for_post(
         $post_array_for_template, 
         140 - ($short_url_length + 1 /* the space before the URL */),

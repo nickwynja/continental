@@ -13,7 +13,10 @@ class Post
     public static $blog_url   = 'http://no-idea.com/';
     public static $blog_description = 'About my blog.';
     public static $blog_uri = '/blog';
-    
+    public static $create_short_url = false;
+    public static $short_url_dir = '/path/to/dir';
+    public static $short_url_domain = 'short.co';
+
     public $source_filename = '';
     public $title = '';
     public $is_draft = false;
@@ -240,13 +243,23 @@ class Post
                 'next_page_url' => false,
             )
         );
+
         $output_html = $t->outputHTML();
 
         if (! $draft || Updater::$write_public_drafts) {
             $output_www_path = $draft ? '/drafts' : dirname($post_data['post-permalink']);
             $output_path = Updater::$dest_path . $output_www_path;
             if (! file_exists($output_path)) mkdir_as_parent_owner($output_path, 0755, true);
+
+            if (self::$create_short_url == true) {
+              if (! file_exists(Updater::$dest_path . $post_data['post-permalink'] . ".html")) {
+                $redir = "Redirect 301 /{$post_data['post-slug']} {$post_data['post-absolute-permalink']}\n";
+                file_put_contents(self::$short_url_dir . '.htaccess', $redir, FILE_APPEND);
+              }
+            }
+
             file_put_contents_as_dir_owner(Updater::$dest_path . ($draft ? '/drafts/' . $this->slug : $post_data['post-permalink'] . ".html"), $output_html);
+
         }
         
         if ($draft) file_put_contents_as_dir_owner(Updater::$source_path . '/drafts/_previews/' . $this->slug . '.html', $output_html);

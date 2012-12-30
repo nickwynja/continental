@@ -32,3 +32,9 @@ Post::$blog_title = 'My Blog';
 Post::$blog_url   = 'http://www.mydomain.com/';
 Post::$blog_description = 'I\'m a blogger.';
 Post::$blog_uri   = '';  // Keep blank if you want your blog index at `yoursite.com`. For `yoursite.com/blog/` set it to `/blog`
+
+// Settings
+
+Post::$create_short_url = false; //Turn to `true` to roll your own shorter/cleaner URLs. Uses short domain and slug
+  Post::$short_url_dir = '/home/blog/short_co/'; //Full local path
+  Post::$short_url_domain = 'short.co/';
