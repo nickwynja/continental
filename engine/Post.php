@@ -253,7 +253,7 @@ class Post
 
             if (self::$create_short_url == true) {
               if (! file_exists(Updater::$dest_path . $post_data['post-permalink'] . ".html")) {
-                $redir = "Redirect 301 /{$post_data['post-slug']} {$post_data['post-absolute-permalink']}\n";
+                $redir = "\nRedirect 301 /{$post_data['post-slug']} {$post_data['post-absolute-permalink']}";
                 file_put_contents(self::$short_url_dir . '.htaccess', $redir, FILE_APPEND);
               }
             }
