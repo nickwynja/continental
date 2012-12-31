@@ -32,6 +32,7 @@ Post::$blog_title = 'My Blog';
 Post::$blog_url   = 'http://www.mydomain.com/';
 Post::$blog_description = 'I\'m a blogger.';
 Post::$blog_uri   = '';  // Keep blank if you want your blog index at `yoursite.com`. For `yoursite.com/blog/` set it to `/blog`
+Post::$author = 'Nick Wynja';
 
 // Settings
 

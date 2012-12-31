@@ -31,6 +31,7 @@ if (! function_exists('title_for_post_callback')) {
 $dom = new DOMDocument('1.0', 'UTF-8');
 $root = $dom->createElement('rss');
 $root->setAttribute('version', '2.0');
+$root->setAttribute('xmlns:dc', 'http://purl.org/dc/elements/1.1/');
 $channel = $dom->createElement('channel');
 
 $title_node = $dom->createElement('title');
@@ -52,6 +53,10 @@ foreach ($content['posts'] as $post) {
     $title_node->appendChild($dom->createTextNode(title_for_post_callback($post)));
     $item_node->appendChild($title_node);
     
+    $creator_node = $dom->createElement('dc:creator');
+    $creator_node->appendChild($dom->createTextNode($post['post-author']));
+    $item_node->appendChild($creator_node);
+
     $link_node = $dom->createElement('link');
     $link_url = url_for_post_callback($post);
     if (! isset($link_url[0]) || $link_url[0] == '/') $link_url = rtrim($content['blog-url'], '/') . $link_url;
@@ -66,7 +71,7 @@ foreach ($content['posts'] as $post) {
     $date_node = $dom->createElement('pubDate');
     $date_node->appendChild($dom->createTextNode($post['post-rss-date']));
     $item_node->appendChild($date_node);
-    
+
     $desc = $dom->createElement('description');
     $desc->appendChild($dom->createTextNode(body_for_post_callback($post)));
     $item_node->appendChild($desc);

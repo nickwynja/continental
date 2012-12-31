@@ -13,6 +13,7 @@ class Post
     public static $blog_url   = 'http://no-idea.com/';
     public static $blog_description = 'About my blog.';
     public static $blog_uri = '/blog';
+    public static $author = 'Your Name';
     public static $create_short_url = false;
     public static $short_url_redirect_file = '/path/to/dir';
     public static $short_url_domain = 'short.co';
@@ -185,6 +186,7 @@ class Post
             $this->headers,
             array(
                 'post-title' => html_entity_decode(SmartyPants($this->title), ENT_QUOTES, 'UTF-8'),
+                'post-author' => isset($this->headers['author']) ? $this->headers['author'] : self::$author,
                 'post-slug' => $this->slug,
                 'post-timestamp' => $this->timestamp,
                 'post-rss-date' => date('D, d M Y H:i:s T', $this->timestamp),
