@@ -180,7 +180,7 @@ class Post
         foreach ($this->tags as $tag) { $tags[$tag] = array('post-tag' => $tag); }
         
         // Convert relative image references to absolute so index pages work
-        $base_uri = Post::$blog_uri . '/' . $this->year . '/' . str_pad($this->month, 2, '0', STR_PAD_LEFT) . '/' . str_pad($this->day, 2, '0', STR_PAD_LEFT);
+        $base_uri = Post::$blog_uri . '/' . $this->year . '/' . str_pad($this->month, 2, '0', STR_PAD_LEFT);
         
         return array_merge(
             $this->headers,

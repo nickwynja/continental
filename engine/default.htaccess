@@ -10,6 +10,7 @@ RewriteRule (.*) $1\.php [L]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.+)/$ /$1 [R=301,L]
 RewriteRule ^([^\.]*)$ - [T=text/html]
+RewriteRule ^([0-9]{4}/[0-9]{2})/[0-9]{2}/(.*?)$ /$1/$2 [R=301,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
