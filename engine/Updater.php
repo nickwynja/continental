@@ -622,7 +622,7 @@ class Updater
 
             $seq_count = Post::write_index_sequence(
                 self::$blog_path . "/tag/$tag",
-                Post::$blog_title, 
+                ucfirst($tag), 
                 'tag', 
                 Post::from_files(self::most_recent_post_filenames(0, $tag, self::$archive_tag_filter)),
                 self::$tag_page_template,
@@ -632,7 +632,7 @@ class Updater
 
             Post::write_index(
                 self::$blog_path . "/tag/$tag.html",
-                Post::$blog_title, 
+                ucfirst($tag), 
                 'tag', 
                 Post::from_files(self::most_recent_post_filenames(self::$frontpage_post_limit, $tag, self::$archive_tag_filter)),
                 self::$tag_page_template,
@@ -642,7 +642,7 @@ class Updater
 
             Post::write_index(
                 self::$blog_path . "/tag/$tag.xml", 
-                Post::$blog_title, 
+                ucfirst($tag), 
                 'tag', 
                 Post::from_files(self::most_recent_post_filenames(self::$rss_post_limit, $tag, self::$archive_tag_filter)),
                 self::$rss_template,
