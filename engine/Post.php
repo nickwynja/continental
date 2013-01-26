@@ -221,7 +221,7 @@ class Post
         $output_html = $t->outputHTML();
 
         if (! file_exists(Updater::$dest_path)) mkdir_as_parent_owner(Updater::$dest_path, 0755, true);
-        file_put_contents_as_dir_owner(Updater::$dest_path . '/' . $path . '/' . $this->slug . ".html", $output_html);
+        file_put_contents_as_dir_owner(Updater::$dest_path . $path . '/' . $this->slug . ".html", $output_html);
     }
     
     public function write_permalink_page($draft = false)

@@ -395,13 +395,14 @@ class Updater
     
     public static function update_pages()
     {
-      $page_dirs = scandir(self::$source_path . '/pages');
-      if ($page_dirs !== false) {
-        foreach($page_dirs as $p) {
-          if (is_dir(self::$source_path . '/pages/' . $p)) {
-            if (! file_exists(self::$dest_path . '/' . $p)) mkdir_as_parent_owner(self::$dest_path . '/' . $p, 0755, true) ;
+      $dir = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(self::$source_path . '/pages'), 
+      RecursiveIteratorIterator::SELF_FIRST);
+
+      foreach($dir as $d){
+          if (is_dir($d)) {
+            $n = str_replace(self::$source_path . '/pages', '', $d);
+            if (! file_exists(self::$dest_path . '/' . $n)) mkdir_as_parent_owner(self::$dest_path . '/' . $n, 0755, true) ;
           }
-        }
       }
        
         foreach (self::changed_files_in_directory(self::$source_path . '/pages') as $filename => $info) {
