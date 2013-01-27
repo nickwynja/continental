@@ -217,6 +217,7 @@ class Post
             'archives' => array(),
             'previous_page_url' => false,
             'next_page_url' => false,
+            'path' => split('/', $path),
         );
         $output_html = $t->outputHTML();
 
