@@ -24,12 +24,9 @@ Here's a list of new features that I have added or fixed:
 
 When possible, I'll make pull requests upstream so all Second Crack users can benefit from fixes and changes.
 
-### Features I Want to Add ###
+### To Dos ###
 
-
-### To-Dos ###
-
-* Remove child folders in `/www` when removed from source directory
+See [Issues][iss] for bugs and pending features.
 
 ## Migrating from Second Crack ##
 
@@ -85,3 +82,4 @@ If you want to move from Second Crack to Continental, below is a general guideli
 [sc]: https://github.com/marcoarment/secondcrack
 [dsc]: http://nickwynja.com/deploysecondcrack
 [cap]: https://github.com/capistrano/capistrano/wiki
+[iss]: http://github.com/nickwynja/continental/issues
