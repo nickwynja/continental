@@ -218,6 +218,7 @@ class Post
             'previous_page_url' => false,
             'next_page_url' => false,
             'path' => split('/', $path),
+            'uri' => $path . '/' . $this->slug
         );
         $output_html = $t->outputHTML();
 
