@@ -1,0 +1,3 @@
+[submodule "engine/lib/AppDotNetPHP"]
+	path = engine/lib/AppDotNetPHP
+	url = git://github.com/jdolitsky/AppDotNetPHP.git
