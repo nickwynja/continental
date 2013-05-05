@@ -76,6 +76,7 @@ If you want to move from Second Crack to Continental, below is a general guideli
 * [2012-12-09]: Added ability to specify alternate template in a page header. [\[See Commit\]](https://github.com/nickwynja/continental/commit/dd953039201c8b1282fbca96854ced1e60386ce5)
 * [2012-12-21]: Added support for blog living at yoursite.com/blog. Settings in config.php. [\[See Commit\]](https://github.com/nickwynja/continental/commit/bc8660ca9bde49d8f0a9857b7d6e51dcf1ac6424)
 * [2012-12-29]: Added support for short/cleaner URLs like u.co/post-slug. [\[See Commit\]](https://github.com/nickwynja/continental/commit/8d9f850c16c70582e69eef6454613fef5d585a73)
+* [2013-05-05]: Adds [AppDotNetPHP](https://github.com/jdolitsky/AppDotNetPHP) submodule in `engine/lib` for use in new ADN post hook. [[See Commit](https://github.com/nickwynja/continental/commit/c2ae7d6514571e8b10f57c5bfc19115872cd80c0)]
 
 
 
