@@ -27,7 +27,6 @@
 
                 <p id="description">Who am I?</p>
             </div>
-
             <? if ($content['page-type'] == 'page') { ?>
                 <article>
                     <header>
@@ -35,6 +34,17 @@
                     </header>
                     <?= $content['page-body'] ?>
                 </article>
+            <? } elseif($content['page-type'] == 'archive' && empty($content['archives'])) { /*$content['archives'] is for a month or tag, not all archives*/ ?>
+                <?php foreach ($content['posts'] as $post):  ?>
+                    <div class='archive'>
+                      <a href='<?php echo $post['uri']; ?>'>
+                        <?php echo $post['title'];?>
+                      </a>
+                      <span class='archive-date'>
+                        <?php echo date('M d, Y', $post['timestamp']); ?>
+                      </span>
+                    </div>
+                <?php endforeach ;?>
             <? } else { ?>
                 <? if (isset($content['posts'])) foreach ($content['posts'] as $post) { ?>
                     <article<?= $post['post-type'] == 'link' ? ' class="link"' : '' ?>>

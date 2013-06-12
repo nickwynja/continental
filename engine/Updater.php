@@ -28,6 +28,7 @@ class Updater
     public static $rss_tag_filter = '!site-only';
     public static $rss_type_filter = false;
 
+    public static $archive_page_template = 'main.php';
     public static $archive_month_template = 'main.php';
     public static $archive_year_template = 'main.php';
     public static $archive_tag_filter = '!rss-only';
@@ -588,6 +589,10 @@ class Updater
                 self::archive_array(),
                 $seq_count
             );
+
+            error_log("Updating Archive...");
+            $archive_posts_array = Post::from_files(self::most_recent_post_filenames(0));
+            Post::write_archive($archive_posts_array);
 
             error_log("Updating RSS...");
             Post::write_index(

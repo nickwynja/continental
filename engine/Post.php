@@ -342,4 +342,30 @@ class Post
         sort($tags);
         return $tags;
     }
+
+    public function write_archive($posts)
+    {
+        $template = Updater::$archive_page_template;
+        $t = new Template($template);
+        $t->content =  array(
+            'post-title' => 'Archive',
+            'post-type' => 'archive',
+            'page-type' => 'archive',
+            'page-title' => 'Archive',
+            'blog-title' => html_entity_decode(SmartyPants(self::$blog_title), ENT_QUOTES, 'UTF-8')
+        );
+
+        foreach ($posts as $post) {
+          $t->content['posts'][] = array(
+              'title' => html_entity_decode(SmartyPants($post->title), ENT_QUOTES, 'UTF-8'),
+              'timestamp' => $post->timestamp,
+              'uri' => '/'.$post->year.'/'.str_pad($post->month, 2, '0', STR_PAD_LEFT).'/'.$post->slug,
+              'tags' => $post->tags,
+          );
+          $output_html = $t->outputHTML();
+        }
+
+        if (! file_exists(Updater::$dest_path)) mkdir_as_parent_owner(Updater::$dest_path, 0755, true);
+        file_put_contents_as_dir_owner(Updater::$dest_path . '/archive.html', $output_html);
+    }
 }
