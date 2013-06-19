@@ -255,7 +255,7 @@ class Post
             $output_path = Updater::$dest_path . $output_www_path;
             if (! file_exists($output_path)) mkdir_as_parent_owner($output_path, 0755, true);
 
-            if (self::$create_short_url == true) {
+            if (! $draft && self::$create_short_url == true) {
               if (! file_exists(Updater::$dest_path . $post_data['post-permalink'] . ".html")) {
                 $redir = "\nRedirect 301 /{$post_data['post-slug']} {$post_data['post-absolute-permalink']}";
                 file_put_contents(self::$short_url_redirect_file, $redir, FILE_APPEND);
