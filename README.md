@@ -81,7 +81,6 @@ If you want to move from Second Crack to Continental, below is a general guideli
 * [2013-06-11]: Adds `/archive` page with a list of all post titles and gives option for separate archive template. [[See Commit](https://github.com/nickwynja/continental/commit/04068e924682d301c33fd703741b9fd6fe19b59e)]
 * [2013-06-18]: Fixes issue with draft not having `.html` extension when using `$write_public_drafts` feature. [[See Commit](https://github.com/nickwynja/continental/commit/6cf41892539094402831b52ab0c2afe47b63d9d0)]
 
-
 [sc]: https://github.com/marcoarment/secondcrack
 [dsc]: http://nickwynja.com/deploysecondcrack
 [cap]: https://github.com/capistrano/capistrano/wiki
