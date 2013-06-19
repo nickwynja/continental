@@ -79,7 +79,7 @@ If you want to move from Second Crack to Continental, below is a general guideli
 * [2012-12-29]: Added support for short/cleaner URLs like u.co/post-slug. [\[See Commit\]](https://github.com/nickwynja/continental/commit/8d9f850c16c70582e69eef6454613fef5d585a73)
 * [2013-05-05]: Adds [AppDotNetPHP](https://github.com/jdolitsky/AppDotNetPHP) submodule in `engine/lib` for use in new ADN post hook. [[See Commit](https://github.com/nickwynja/continental/commit/c2ae7d6514571e8b10f57c5bfc19115872cd80c0)]
 * [2013-06-11]: Adds `/archive` page with a list of all post titles and gives option for separate archive template. [[See Commit](https://github.com/nickwynja/continental/commit/04068e924682d301c33fd703741b9fd6fe19b59e)]
-* [2013-06-18]: Fixes issue with draft not having `.html` extension when using `$write_public_drafts` feature. [[See Commit](https://github.com/nickwynja/continental/commit/6cf41892539094402831b52ab0c2afe47b63d9d0)]
+* [2013-06-18]: Fixes issue with draft not having `.html` extension when using `$write_public_drafts` feature. [[See Commit](https://github.com/nickwynja/continental/commit/b86eb097ac9e137ea416e0ac209a5c5807f4f572)]
 
 [sc]: https://github.com/marcoarment/secondcrack
 [dsc]: http://nickwynja.com/deploysecondcrack
