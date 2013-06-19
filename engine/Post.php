@@ -262,7 +262,7 @@ class Post
               }
             }
 
-            file_put_contents_as_dir_owner(Updater::$dest_path . ($draft ? '/drafts/' . $this->slug : $post_data['post-permalink'] . ".html"), $output_html);
+            file_put_contents_as_dir_owner(Updater::$dest_path . ($draft ? '/drafts/' . $this->slug . ".html" : $post_data['post-permalink'] . ".html"), $output_html);
 
         }
         

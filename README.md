@@ -10,7 +10,7 @@ In many cases, this fork won't be ideal for out-of-the-box configuration. I'll t
 
 # New Features and Fixes #
 
-Here's a list of new features that I have added or fixed:
+Here's a list of new features that I have added or fixed compared to the original Second Crack:
 
 * Tags have been moved out of the root of `www` and now are served from `website.com/tag/foo`.
 * Fixed month archive cache bug
@@ -21,6 +21,7 @@ Here's a list of new features that I have added or fixed:
 * Custom pages templates by defining in the post/page header
 * Support for having your blog roll live in a subdirectory like `yoursite.com/blog`
 * Adds short/cleaner URLs by optionally writing to `.htaccess` of short domain on same server
+* Adds a list of all posts along with optional template to create an `/archive` page.
 
 When possible, I'll make pull requests upstream so all Second Crack users can benefit from fixes and changes.
 
@@ -77,7 +78,8 @@ If you want to move from Second Crack to Continental, below is a general guideli
 * [2012-12-21]: Added support for blog living at yoursite.com/blog. Settings in config.php. [\[See Commit\]](https://github.com/nickwynja/continental/commit/bc8660ca9bde49d8f0a9857b7d6e51dcf1ac6424)
 * [2012-12-29]: Added support for short/cleaner URLs like u.co/post-slug. [\[See Commit\]](https://github.com/nickwynja/continental/commit/8d9f850c16c70582e69eef6454613fef5d585a73)
 * [2013-05-05]: Adds [AppDotNetPHP](https://github.com/jdolitsky/AppDotNetPHP) submodule in `engine/lib` for use in new ADN post hook. [[See Commit](https://github.com/nickwynja/continental/commit/c2ae7d6514571e8b10f57c5bfc19115872cd80c0)]
-
+* [2013-06-11]: Adds `/archive` page with a list of all post titles and gives option for separate archive template. [[See Commit](https://github.com/nickwynja/continental/commit/04068e924682d301c33fd703741b9fd6fe19b59e)]
+* [2013-06-18]: Fixes issue with draft not having `.html` extension when using `$write_public_drafts` feature. [[See Commit](https://github.com/nickwynja/continental/commit/6cf41892539094402831b52ab0c2afe47b63d9d0)]
 
 
 [sc]: https://github.com/marcoarment/secondcrack
