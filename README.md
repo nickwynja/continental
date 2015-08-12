@@ -4,8 +4,6 @@ Continental is a name for the Vienna stage of coffee roasting which happens righ
 
 Continental is a fork of Marco Arment's [Second Crack][sc]. After using it for a while, I wanted to make some drastic changes to the structure of the repo to simplify it for my use, accommodate my preferences, and set it up for deployment as private repos for my blogs.
 
-**The design choices in Continental are very opinionated.**
-
 In many cases, this fork won't be ideal for out-of-the-box configuration. I'll try to keep up with documentation and changes from Second Crack to make deployment easy. If you're just starting with Second Crack, I'd recommend using Marco's original repository and can be deployed using my [`deploysecondcrack`][dsc] tool.
 
 # New Features and Fixes #
